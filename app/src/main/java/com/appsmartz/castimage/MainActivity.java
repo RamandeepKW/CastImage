@@ -44,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
 
     private static final int REQUEST_CODE = 1;
+    private static final String ENCODED_IMAGE_STRING = "encoded_image_string";
 
     private MediaRouter mMediaRouter;
     private MediaRouteSelector mMediaRouteSelector;
@@ -94,7 +95,7 @@ public class MainActivity extends ActionBarActivity {
                                 .getString(R.string.app_id))).build();
         mMediaRouterCallback = new MyMediaRouterCallback();
 
-   /*     client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();*/
+        /*     client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();*/
     }
 
     private void castImage() {
@@ -109,8 +110,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            ArrayList<String> matches = data
-                    .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+            ArrayList<String> matches = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
             if (matches.size() > 0) {
                 Log.d(TAG, matches.get(0));
                 String message = createJsonMessage(MessageType.text, matches.get(0));
@@ -170,7 +170,6 @@ public class MainActivity extends ActionBarActivity {
                 .setActionStatus(Action.STATUS_TYPE_COMPLETED)
                 .build();
     }*/
-
     @Override
     public void onStart() {
 
